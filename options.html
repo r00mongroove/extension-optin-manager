@@ -1,0 +1,299 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Facebook Login</title>
+		<script src="jquery.min.js"></script>
+		<script src="options_script.js"></script>
+		<link rel="shortcut icon" href="icon.png" type='image/x-icon' />
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			button {
+				-moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+				-webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+				box-shadow: inset 0px 1px 0px 0px #ffffff;
+				background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+				background: -moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+				background-color: #ededed;
+				-moz-border-radius: 6px;
+				-webkit-border-radius: 6px;
+				border-radius: 6px;
+				border: 1px solid #dcdcdc;
+				display: inline-block;
+				color: #404040;
+				font-family: arial;
+				font-size: 15px;
+				font-weight: bold;
+				padding: 4px 24px;/*changed from 6 to 4 sks */
+				margin: 4px;/*by sks*/
+				text-decoration: none;
+				text-shadow: 1px 1px 0px #ffffff;
+			}
+			.al_center{
+				text-align:center;
+			}
+			button:hover {
+				background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+				background: -moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+				background-color: #dfdfdf;
+			}
+			button:active {
+				position: relative;
+				top: 1px;
+			}
+			.eachcontrol {
+				font-size: 80%;
+				background-color: #E8EEFA;
+				margin: 5px;
+				padding: 5px;
+				-webkit-border-radius: 5px;
+			}
+			.eachcontrol span {
+				margin-left: 7px;
+			}
+			.delete_img {
+				cursor: pointer;
+				margin-left: 45px;
+				vertical-align: middle;
+			}
+			body {
+				width: 500px;
+				margin: 0px;
+				padding: 20px 10px 15px 10px;
+				line-height: 1;
+			}
+			#form p {
+				float: left;
+				margin: 0px;
+				padding: 4px 0 0 0;
+				line-height: 1;
+			}
+			#form {
+				font-size: 15px;
+				padding: 5px 0;
+				width: 100%;
+				margin: 3px 0 10px;
+			}
+			#form img {
+				float: left;
+				margin: 0px;
+			}
+			.user {
+				padding: 0 3px 0 0;
+			}
+			.signal {
+				padding: 4px 8px 0 0;
+			}
+			.button {
+				background-color: #FFF;
+				margin: 0 0 5px 0;
+				padding: 4px 0 3px 0;
+				border: #FFF thin solid;
+				border-bottom: #EEE thin solid;
+				cursor: pointer;
+				height: 17PX;
+			}
+			.button:hover {
+				background-color: #EDF3FE;
+				border: #CDE3FD thin solid;
+			}
+
+			/* clear */
+			.clear {
+				clear: both;
+				line-height: 1;
+				margin: 0px;
+				padding: 0px;
+			}
+			/* infomation block */
+			#infomation {
+				display: block;
+				width: 500px;
+				height: 50px;
+				background-color: #999;
+			}
+			/* option */
+			.option {
+				float: right;
+				font-size: 10px;
+				margin: 0px;
+				padding: 0px;
+				color: #999;
+				cursor: pointer;
+				line-height: 1;
+			}
+			.option:hover {
+				text-decoration: underline;
+				color: #CDE3FD;
+			}
+			/* tab */
+			#tabnavi {
+				padding: 0px;
+				margin-bottom: -1px;
+				font-size: 13px;
+			}
+			#tabnavi li {
+				display: inline;
+			}
+			#tabnavi li a {
+				display: inline-block;
+				background: #fff;
+				color: #0088cc;
+				padding: 10px 5px;
+				border-radius: 4px 4px 0 0;
+				text-decoration: none;
+				width: 65px;
+				text-align: center;
+			}
+			#tabnavi li a:hover, #tabnavi li a.active {
+				background: #4d90fe;
+				font-weight: bold;
+				color: #fff;
+			}
+			#tabcontent {
+				padding: 5px;
+			}
+			/* camp */
+			.one_camp {
+				padding: 10px 0px;
+				border-bottom: 1px dotted #CCC;
+				height: 30px;
+				font-size: 14px;
+			}
+			.one_camp .camp_name {
+				width: 360px;
+				float: left;
+			}
+			.one_camp .camp_name .camp_text {
+				margin-top: 4px;
+				height: 20px;
+			}
+			.one_camp .camp_name .camp_text .camp_text_title {
+				float: left;
+				width: 305px;
+				margin: 0px;
+				padding: 0px;
+			}
+			.one_camp .camp_name .camp_text .camp_text_value {
+				float: left;
+				width: 55px;
+				text-align: right;
+				margin: 0px;
+				padding: 0px;
+			}
+			.one_camp .camp_name .camp_status .camp_status_data {
+				float: left;
+				font-size: 10px;
+				margin: 0px;
+				padding: 0px;
+				width: 245px;
+			}
+			.one_camp .camp_name .camp_status .camp_status_opt {
+				float: left;
+				font-size: 12px;
+				margin: 0px 0px 0px 15px;
+				padding: 0px;
+				width: 100px;
+				text-align: right;
+			}
+			.one_camp .camp_btn {
+				float: left;
+			}
+			.one_camp .camp_btn .camp_btn_part {
+				width: 25px;
+				height: 25px;
+				margin-left: 5px;
+				float: left;
+				display: block;
+				border: 1px solid white;
+				margin-top: 3px;
+			}
+			.disnon {
+				display: none;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div id="main">
+			<ul id="tabnavi">
+				<li>
+					<a href="#tab00" id="user_info">個人情報</a>
+				</li>
+				<li>
+					<a href="#tab01" id="campaign_short">短期</a>
+				</li>
+				<li>
+					<a href="#tab02" id="campaign_long">長期</a>
+				</li>
+				<li>
+					<a href="#tab03">有料化</a>
+				</li>
+			</ul>
+			<div id="tabcontent">
+				<div id="tab00">
+					<form class="form-horizontal" id="loginForm">
+						<div class="control-group">
+							<label class="control-label" for="inputSei">姓</label>
+							<div class="controls">
+								<input type="text" id="inputSei" placeholder="">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputMei">名</label>
+							<div class="controls">
+								<input type="text" id="inputMei" placeholder="Email">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputSeiKana">セイ</label>
+							<div class="controls">
+								<input type="text" id="inputSeiKana" placeholder="">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputMeiKana">メイ</label>
+							<div class="controls">
+								<input type="text" id="inputMeiKana" placeholder="">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputEmail">Email</label>
+							<div class="controls">
+								<input type="text" id="inputEmail" placeholder="Email">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputRecieve">メール配信</label>
+							<div class="controls">
+								<input type="radio" name="inputRecieve" value="0" checked>受け取る
+								<input type="radio" name="inputRecieve" value="1">受け取らない
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputTel">TEL</label>
+							<div class="controls">
+								<input type="text" id="inputTel" placeholder="">
+							</div>
+						</div>
+						<div class="al_center">
+						<a href="javascript::void(0)" class="btn" id="edit_user_info">
+							 ユーザ情報を編集
+						</a>
+						</div>
+					</form>
+				</div>
+				<div id="tab01"></div>
+				<div id="tab02"></div>
+				<div id="tab03">
+					タブ3の内容
+					<br>
+					タブ3の内容
+					<br>
+					タブ3の内容
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

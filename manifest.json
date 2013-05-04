@@ -1,0 +1,19 @@
+{
+	"name": "Optin Tool",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "無料オプトインを簡単にさせるツールです。",
+	"icons": {
+		"48": "./icon/icon48.png"
+	},
+	"permissions": ["tabs", "cookies", "proxy", "webRequest", "webRequestBlocking", "https://*/*", "http://*/*"],
+	"background": {
+		"page": "background.html"
+	},
+	"options_page": "options.html",
+	"browser_action": {
+		"default_title": "FBログイン",
+		"default_icon": "./icon/icon19.png",
+		"default_popup": "popup.html"
+	}
+}
