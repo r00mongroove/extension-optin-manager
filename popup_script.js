@@ -7,7 +7,7 @@ $(function() {
 		"campaign_long" : "http://kabu-u.net/campaign/avaiables?term=1",
 		"edit_user_info" : "http://kabu-u.net/user/edit",
 	};
-	var bg = chrome.extension.getBackgroundPage();
+	//var bg = chrome.extension.getBackgroundPage();
 
 	$('#tabcontent > div').hide();
 	//初期では非表示
@@ -59,8 +59,6 @@ $(function() {
 		});
 	});
 	
-	$("#")
-
 	$.ajax({
 		type : "GET",
 		url : api["campaign_short"],
@@ -78,36 +76,6 @@ $(function() {
 		}
 	});
 
-	$("#sign_in").click(function() {
-		data = {};
-		data["login"] = $("#inputLogin").val();
-		data["pass"] = $("#inputPassword").val();
-		$.ajax({
-			type : "POST",
-			url : api["auth"],
-			data : data,
-			success : function(msg) {
-				if (msg == true) {
-					$("#flash").html("");
-					$("#loginForm").hide();
-					$("#main").show();
-					$.ajax({
-						type : "GET",
-						url : api["campaign_short"],
-						success : function(msg) {
-							data = JSON.parse(msg);
-							for (var i in data) {
-								var html = insert_campaign(data[i]);
-								$("#tab01").append(html);
-							}
-						}
-					});
-				} else {
-					$("#flash").html("ログインIDとパスワードの組み合わせが異なります");
-				}
-			}
-		});
-	});
 
 	$("#logout").click(function() {
 		$.ajax({
